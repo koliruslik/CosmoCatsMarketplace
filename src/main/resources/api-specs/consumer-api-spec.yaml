@@ -58,13 +58,16 @@ paths:
       responses:
         "201":
           description: Product created
-          headers: 
+          headers:
             Location:
               description: Address of created product
               schema:
                 type: string
                 format: uri-reference
-              example: /api/products/1
+              examples:
+                createdProduct:
+                  summary: Location of the created product
+                  value: "/api/products/1"
           content:
             application/json:
               schema:
@@ -81,7 +84,7 @@ paths:
       - name: productId
         in: path
         required: true
-        description: Procuct identifier
+        description: Product identifier
         schema: 
           type: integer
           format: int64
