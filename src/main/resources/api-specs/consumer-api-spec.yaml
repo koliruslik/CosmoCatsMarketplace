@@ -165,15 +165,36 @@ components:
         - id
         - name
         - price
+        - category
       properties: 
         id:
           type: integer
           format: int64
         name:
           type: string
+          minLength: 1
+          maxLength: 100
+          pattern: ".*\\S.*"
         price:
           type: number
           minimum: 0.01
+        category:
+          $ref: "#/components/schemas/Category"
+    Category:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          pattern: ".*\\S.*"
     ProductPage:
       type: object
       required:
@@ -205,24 +226,39 @@ components:
       required:
         - name
         - price
+        - categoryId
       properties: 
         name:
           type: string
+          minLength: 1
+          maxLength: 100
+          pattern: ".*\\S.*"
         price:
           type: number
           minimum: 0.01
+        categoryId:
+          type: integer
+          format: int64
+          minimum: 1
     UpdateProductRequest:
       type: object
       required:
         - name
         - price
+        - categoryId
       properties: 
         name:
           type: string
           minLength: 1
+          maxLength: 100
+          pattern: ".*\\S.*"
         price:
           type: number
           minimum: 0.01
+        categoryId:
+          type: integer
+          format: int64
+          minimum: 1
     Problem:
       type: object
       required:
