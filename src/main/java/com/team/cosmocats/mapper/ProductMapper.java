@@ -1,4 +1,4 @@
-﻿package com.team.cosmocats.mapper;
+package com.team.cosmocats.mapper;
 
 import com.team.cosmocats.dto.CategoryResponse;
 import com.team.cosmocats.dto.ProductResponse;
@@ -13,8 +13,8 @@ public class ProductMapper {
                 product.getName(),
                 product.getPrice(),
                 new CategoryResponse(
-                        product.getId(),
-                        product.getName()
+                        product.getCategory().getId(),
+                        product.getCategory().getName()
                 )
         );
     }
