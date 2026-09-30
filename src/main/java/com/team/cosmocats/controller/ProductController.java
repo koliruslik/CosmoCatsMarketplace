@@ -1,4 +1,4 @@
-﻿package com.team.cosmocats.controller;
+package com.team.cosmocats.controller;
 
 import com.team.cosmocats.dto.CreateProductRequest;
 import com.team.cosmocats.dto.ProductPageResponse;

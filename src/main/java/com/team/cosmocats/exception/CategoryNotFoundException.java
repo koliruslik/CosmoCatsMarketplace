@@ -1,4 +1,4 @@
-﻿package com.team.cosmocats.exception;
+package com.team.cosmocats.exception;
 
 public class CategoryNotFoundException extends RuntimeException {
     public CategoryNotFoundException(Long id) {

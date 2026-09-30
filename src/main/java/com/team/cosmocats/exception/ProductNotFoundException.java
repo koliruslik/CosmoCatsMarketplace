@@ -1,4 +1,4 @@
-﻿package com.team.cosmocats.exception;
+package com.team.cosmocats.exception;
 
 public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException(Long id) {

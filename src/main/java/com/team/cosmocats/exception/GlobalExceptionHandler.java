@@ -1,4 +1,4 @@
-﻿package com.team.cosmocats.exception;
+package com.team.cosmocats.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
