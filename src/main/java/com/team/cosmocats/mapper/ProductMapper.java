@@ -2,20 +2,18 @@ package com.team.cosmocats.mapper;
 
 import com.team.cosmocats.dto.CategoryResponse;
 import com.team.cosmocats.dto.ProductResponse;
+import com.team.cosmocats.model.Category;
 import com.team.cosmocats.model.Product;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 
-@Component
-public class ProductMapper {
-    public ProductResponse toResponse(final Product product) {
-        return new ProductResponse(
-                product.getId(),
-                product.getName(),
-                product.getPrice(),
-                new CategoryResponse(
-                        product.getCategory().getId(),
-                        product.getCategory().getName()
-                )
-        );
-    }
+@Mapper(
+        componentModel = MappingConstants.ComponentModel.SPRING,
+        unmappedTargetPolicy = ReportingPolicy.ERROR
+)
+public interface ProductMapper {
+    ProductResponse toResponse(Product product);
+
+    CategoryResponse toResponse(Category category);
 }
