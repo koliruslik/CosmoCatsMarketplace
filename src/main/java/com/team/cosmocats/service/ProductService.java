@@ -26,7 +26,7 @@ public class ProductService {
         return productMapper.toResponse(product);
     }
     
-    public ProductPageResponse getProducts(@Min(0) int page, @Min(1) @Max(100) int size) {
+    public ProductPageResponse getProducts(int page, int size) {
         var products = productRepository.findAll(page, size)
                 .stream()
                 .map(productMapper::toResponse)
