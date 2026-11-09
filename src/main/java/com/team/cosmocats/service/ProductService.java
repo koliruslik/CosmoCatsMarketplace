@@ -7,8 +7,6 @@ import com.team.cosmocats.mapper.ProductMapper;
 import com.team.cosmocats.model.Product;
 import com.team.cosmocats.repository.CategoryRepository;
 import com.team.cosmocats.repository.ProductRepository;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
