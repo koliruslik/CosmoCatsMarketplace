@@ -1,8 +1,10 @@
 package com.team.cosmocats.exception;
 
+import org.springframework.context.MessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -37,7 +39,7 @@ public class GlobalExceptionHandler {
         var detail = e.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                .map(this::validationMessage)
                 .collect(Collectors.joining("; "));
         
         return createProblem(
@@ -53,10 +55,7 @@ public class GlobalExceptionHandler {
     ) {
         var detail = exception.getAllErrors()
                 .stream()
-                .map(error -> Objects.requireNonNullElse(
-                        error.getDefaultMessage(),
-                        "Invalid value"
-                ))
+                .map(this::validationMessage)
                 .collect(Collectors.joining("; "));
 
         return createProblem(
@@ -89,6 +88,13 @@ public class GlobalExceptionHandler {
         );
     }
     
+    private String validationMessage(MessageSourceResolvable error) {
+        var message = Objects.requireNonNullElse(error.getDefaultMessage(), "Invalid value");
+        return error instanceof FieldError fieldError
+                ? fieldError.getField() + ": " + message
+                : message;
+    }
+
     private ProblemDetail createProblem(HttpStatus status, String title, String detail) {
         var problem = ProblemDetail.forStatusAndDetail(status, detail);
         problem.setTitle(title);
